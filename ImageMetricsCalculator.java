@@ -324,8 +324,8 @@ public class ImageMetricsCalculator {
     }
 
     public static void main(String[] args) {
-        String inputFolder = "C:\\Users\\Илья\\Downloads\\mandelbrot_for_cipher-master\\mandelbrot_for_cipher-master\\resources\\input_arr";
-        String outputFolder = "C:\\Users\\Илья\\Downloads\\mandelbrot_for_cipher-master\\mandelbrot_for_cipher-master\\resources\\output_arr_for_same_input";
+        String inputFolder = "C:\\Users\\Илья\\IdeaProjects\\MandelbrotTests\\input";
+        String outputFolder = "C:\\Users\\Илья\\IdeaProjects\\MandelbrotTests\\output";
 
         List<BufferedImage> inputImages = new ArrayList<>();
         List<BufferedImage> outputImages = new ArrayList<>();
@@ -377,37 +377,37 @@ public class ImageMetricsCalculator {
         BufferedImage[] inputImageArray = inputImages.toArray(new BufferedImage[0]);
         BufferedImage[] outputImageArray = outputImages.toArray(new BufferedImage[0]);
 
-        //double totalR = 0;
-        //double totalSSIM = 0;
-        //double totalPixelMatch = 0;
-        //int count = inputImageArray.length;
-
-        //for (int i = 0; i < count; i++) {
-        //    BufferedImage inputImage = inputImageArray[i];
-        //    BufferedImage outputImage = outputImageArray[i];
-
-        //    if (areImagesIdentical(inputImage, outputImage)) {
-        //        System.out.println("Изображения " + (i + 1) + " идентичны.");
-        //    } else {
-        //        System.out.println("Изображения " + (i + 1) + " не идентичны.");
-        //    }
-
-        //    totalR += calculatePearsonCorrelation(inputImage, outputImage, i + 1);
-        //    totalSSIM += calculateSSIM(inputImage, outputImage, i + 1);
-        //    totalPixelMatch += calculatePixelMatchPercentage(inputImage, outputImage, i + 1);
-        //}
-
-        //double avgR = totalR / count;
-        //double avgSSIM = totalSSIM / count;
-        //double avgPixelMatch = totalPixelMatch / count;
+//        double totalR = 0;
+//        double totalSSIM = 0;
+//        double totalPixelMatch = 0;
+//        int count = inputImageArray.length;
+//
+//        for (int i = 0; i < count; i++) {
+//            BufferedImage inputImage = inputImageArray[i];
+//            BufferedImage outputImage = outputImageArray[i];
+//
+//            if (areImagesIdentical(inputImage, outputImage)) {
+//                System.out.println("Изображения " + (i + 1) + " идентичны.");
+//            } else {
+//                System.out.println("Изображения " + (i + 1) + " не идентичны.");
+//            }
+//
+//            totalR += calculatePearsonCorrelation(inputImage, outputImage, i + 1);
+//            totalSSIM += calculateSSIM(inputImage, outputImage, i + 1);
+//            totalPixelMatch += calculatePixelMatchPercentage(inputImage, outputImage, i + 1);
+//        }
+//
+//        double avgR = totalR / count;
+//        double avgSSIM = totalSSIM / count;
+//        double avgPixelMatch = totalPixelMatch / count;
 
         // Вычисление средних значений метрик для input и output изображений
-        //double[] avgR = calculateAverageMetrics(inputImageArray, outputImageArray, 1);
-        //double[] avgSSIM = calculateAverageMetrics(inputImageArray, outputImageArray, 2);
-        //double[] avgPixelMatch = calculateAverageMetrics(inputImageArray, outputImageArray, 3);
+        double[] avgR = calculateAverageMetrics(inputImageArray, outputImageArray, 1);
+        double[] avgSSIM = calculateAverageMetrics(inputImageArray, outputImageArray, 2);
+        double[] avgPixelMatch = calculateAverageMetrics(inputImageArray, outputImageArray, 3);
 
         // Вычисление средних значений Rh, Rl, Rd, D для output изображений
-        //double[] avgNeighborCorrelationAndVariance = calculateAverageNeighborCorrelationAndVariance(outputImageArray);
+        double[] avgNeighborCorrelationAndVariance = calculateAverageNeighborCorrelationAndVariance(outputImageArray);
 
         // Вычисление средних значений UACI, NPCR, NFC для попарных сравнений output изображений
         double[] avgUACI = calculateAverageMetrics(inputImageArray, outputImageArray, 4);
@@ -415,18 +415,18 @@ public class ImageMetricsCalculator {
         double[] avgNFC = calculateAverageMetrics(inputImageArray, outputImageArray, 6);
 
         // Вывод результатов
-        //System.out.println("Среднее R между исходным и зашифрованным изображением: " + avgR[0]);
-        //System.out.println("Среднее SSIM между исходным и зашифрованным изображением: " + avgSSIM[0]);
-        //System.out.println("Средний процент соответствующих пикселей у исходного и зашифрованного изображения: " + avgPixelMatch[0]);
-        //System.out.println("Среднее Rh для зашифрованных изображений: " + avgNeighborCorrelationAndVariance[0]);
-        //System.out.println("Среднее Rl для зашифрованных изображений: " + avgNeighborCorrelationAndVariance[1]);
-        //System.out.println("Среднее Rd для зашифрованных изображений: " + avgNeighborCorrelationAndVariance[2]);
-        //System.out.println("Среднее D для зашифрованных изображений: " + avgNeighborCorrelationAndVariance[3]);
+        System.out.println("Среднее R между исходным и зашифрованным изображением: " + avgR[0]);
+        System.out.println("Среднее SSIM между исходным и зашифрованным изображением: " + avgSSIM[0]);
+        System.out.println("Средний процент соответствующих пикселей у исходного и зашифрованного изображения: " + avgPixelMatch[0]);
+        System.out.println("Среднее Rh для зашифрованных изображений: " + avgNeighborCorrelationAndVariance[0]);
+        System.out.println("Среднее Rl для зашифрованных изображений: " + avgNeighborCorrelationAndVariance[1]);
+        System.out.println("Среднее Rd для зашифрованных изображений: " + avgNeighborCorrelationAndVariance[2]);
+        System.out.println("Среднее D для зашифрованных изображений: " + avgNeighborCorrelationAndVariance[3]);
         System.out.println("Среднее UACI для зашифрованных изображений: " + avgUACI[0]);
         System.out.println("Среднее NPCR для зашифрованных изображений: " + avgNPCR[0]);
         System.out.println("Среднее NFC для зашифрованных изображений: " + avgNFC[0]);
-        //System.out.println("Среднее R между исходным и расшифрованным изображением: " + avgR);
-        //System.out.println("Среднее SSIM между исходным и расшифрованным изображением: " + avgSSIM);
-        //System.out.println("Средний процент соответствующих пикселей у исходного и расшифрованного изображения: " + avgPixelMatch);
+//        System.out.println("Среднее R между исходным и расшифрованным изображением: " + avgR);
+//        System.out.println("Среднее SSIM между исходным и расшифрованным изображением: " + avgSSIM);
+//        System.out.println("Средний процент соответствующих пикселей у исходного и расшифрованного изображения: " + avgPixelMatch);
     }
 }
